@@ -696,11 +696,28 @@ function gcal(e) {
   return "https://calendar.google.com/calendar/render?" + p.toString().replace("%2F","/");
 }
 const gbtn = (e, short) => `<a class="gadd" href="${gcal(e)}" target="_blank" rel="noopener" aria-label="${esc(T().gadd+": "+ttl(e))}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 7h14v10H5zm6 2v2.5H8.5v2H11V18h2v-2.5h2.5v-2H13V11z"/></svg>${short?"":`<span>${T().gaddS}</span>`}</a>`;
+let DLCAP = null;
+try { if (window.claude && window.claude.use) window.claude.use("downloads").then(c => { DLCAP = c; }).catch(() => {}); } catch(e) {}
+document.addEventListener("click", async ev => {
+  const a = ev.target.closest("a.dl-a"); if (!a || !DLCAP) return;
+  ev.preventDefault();
+  const name = a.getAttribute("href"), em = a.querySelector("em"), old = em.textContent;
+  try {
+    em.textContent = "…";
+    const blob = await (await fetch(name)).blob();
+    await DLCAP.save({ filename: name, data: blob });
+    em.textContent = "✓";
+  } catch(e) {
+    em.textContent = old;
+    if (!e || e.code !== "declined") window.location.href = name;
+  }
+  setTimeout(() => { em.textContent = old; }, 2500);
+});
 function renderDl() {
   const F = { g12:"KAIS-Calendar-2026-27-Grades-1-2.pdf", g39:"KAIS-Calendar-2026-27-Grades-3-9.pdf" };
   const order = GR==="g12" ? ["g12","g39"] : ["g39","g12"];
   $("#dl").innerHTML = `<div class="dl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v14H6zm7 1.5V9h5.5zM8 13h8v1.6H8zm0 3.2h8v1.6H8z"/></svg><div><h3 title="${esc(T().dlP)}">${T().dlH}</h3></div></div>
-    <div class="dl-b">${order.map(g => `<a class="dl-a ${g} ${g===GR?"mine":""}" href="${F[g]}" target="_blank" rel="noopener"><span><b>${T()[g+"F"]}</b>${g===GR?`<small>${T().dlYours}</small>`:""}</span><em>PDF ↗</em></a>`).join("")}</div>`;
+    <div class="dl-b">${order.map(g => `<a class="dl-a ${g} ${g===GR?"mine":""}" href="${F[g]}" download="${F[g]}" target="_blank" rel="noopener"><span><b>${T()[g+"F"]}</b>${g===GR?`<small>${T().dlYours}</small>`:""}</span><em>PDF ↗</em></a>`).join("")}</div>`;
 }
 function renderAllCard() { renderDl();
   const el = $("#gall");
