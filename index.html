@@ -50,6 +50,17 @@ img { max-width:100%; }
 .gsw button[aria-pressed="true"] b, .gsw button[aria-pressed="true"] small { color:#fff; }
 :root[data-grade="g12"] .pill { background:#ff8a3d; color:#fff; }
 .eoy.res { margin-top:10px; background:var(--acad); }
+.dl { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; justify-content:space-between; padding:8px 14px; margin-bottom:14px; border-inline-start:4px solid var(--hol); }
+.dl-t { display:flex; gap:8px; align-items:center; min-width:0; flex:0 1 auto; }
+.dl-t svg { width:20px; height:20px; fill:var(--hol); flex:none; }
+.dl h3 { font-size:15px; } .dl p { display:none; }
+.dl-b { display:flex; flex-wrap:wrap; gap:6px; }
+.dl-a { display:flex; align-items:center; gap:8px; justify-content:space-between; text-decoration:none; color:var(--ink); border:1.5px solid var(--line); background:var(--surface); border-radius:99px; padding:4px 12px; font-size:13px; flex:0 1 auto; }
+.dl-a span { display:flex; gap:6px; align-items:baseline; } .dl-a b { font-weight:800; } .dl-a small { display:none; }
+.dl-a em { font-style:normal; font-weight:800; font-size:12px; color:var(--brand); white-space:nowrap; }
+.dl-a.mine { border-color:var(--brand); background:var(--brand); } .dl-a.mine b, .dl-a.mine small, .dl-a.mine em { color:var(--bg); }
+.dl-a.g12.mine { border-color:#ff8a3d; background:#ff8a3d; } .dl-a.g12.mine b, .dl-a.g12.mine small, .dl-a.g12.mine em { color:#fff; }
+.dl-a:hover { border-color:var(--brand); }
 .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
 .xs-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
 .xs-tabs button { border:2px solid var(--line); background:var(--surface); color:var(--ink); border-radius:99px; padding:8px 18px; font-weight:800; font-size:15px; }
@@ -341,6 +352,7 @@ button { font:inherit; color:inherit; cursor:pointer; }
     </div>
   </section>
   <section class="card gall" id="gall" hidden></section>
+  <section class="card dl" id="dl"></section>
   <section class="status">
     <div class="card next" id="next"></div>
     <div class="card nx" id="nextx"></div>
@@ -637,7 +649,7 @@ let GR = "g39";
 const DATA = { months: ALL.months, monAr: ALL.monAr, events: ALL.grades.g39 };
 const I18N = {
  en: {
-  title:"ACADEMIC CALENDAR", grades:"GRADES 3 – 9", ah:"1448 – 1449 AH", alt:"التقويم الأكاديمي", soon:"Coming up", month:"Month", year:"Year", list:"List", exams:"Exam Schedule", nextExam:"Next exam", noExam:"No upcoming exams have been scheduled yet.", todayW:"Today", inDays:n=>"In "+n+(n===1?" day":" days"), xDate:"Date", xDay:"Day", xSub:"Subject", xSched:"Schedule", xHours:"Exams will be conducted during regular class hours.", xReg:d=>d+" will be a regular class day.", xNone:"No exam timetable has been published for this grade yet.", xDone:"Done", xNext:"Next", xHint:"Tap the calendar icon to save a single exam to Google Calendar.",
+  title:"ACADEMIC CALENDAR", grades:"GRADES 3 – 9", ah:"1448 – 1449 AH", alt:"التقويم الأكاديمي", soon:"Coming up", month:"Month", year:"Year", list:"List", dlH:"Download & print the calendar", dlP:"A3 size, two pages. Print double-sided (flip on long edge) at actual size.", dlYours:"Your grade", g12F:"Grades 1–2 calendar", g39F:"Grades 3–9 calendar", dlB:"Open PDF", exams:"Exam Schedule", nextExam:"Next exam", noExam:"No upcoming exams have been scheduled yet.", todayW:"Today", inDays:n=>"In "+n+(n===1?" day":" days"), xDate:"Date", xDay:"Day", xSub:"Subject", xSched:"Schedule", xHours:"Exams will be conducted during regular class hours.", xReg:d=>d+" will be a regular class day.", xNone:"No exam timetable has been published for this grade yet.", xDone:"Done", xNext:"Next", xHint:"Tap the calendar icon to save a single exam to Google Calendar.",
   search:"Search events, e.g. PTM, exam, Eid", sumH:"Holidays & Examinations", holH:"Holidays & Breaks", examH:"Examinations",
   eoy:"END OF ACADEMIC YEAR", eoyD:"Thursday, 1 July 2027", res:"RESULT DECLARATION – TERM 2", resD:"Thursday, 15 July 2027", g12L:"Grades 1 – 2", g39L:"Grades 3 – 9", g12S:"Unit tests", g39S:"Mid-term & term exams", pickG:"Choose your child's grade", who:"Who We Are", visH:"Our Vision", misH:"Our Mission",
   vis:"To be the trusted partner in the holistic transformation of young learners into global leaders with strong human values.",
@@ -656,7 +668,7 @@ const I18N = {
   values:[["Excellence","Striving for the highest standards in academics, character, and service."],["Integrity","Upholding honesty, respect, and ethical conduct in all we do."],["Respect","Valuing diversity, empathy, and the dignity of every individual."],["Innovation","Encouraging creativity, critical thinking, and a love for lifelong learning."],["Community","Building strong partnerships with students, parents, and society."],["Responsibility","Nurturing accountable, compassionate global citizens."]]
  },
  ar: {
-  title:"التقويم الأكاديمي", grades:"الصفوف 3 – 9", ah:"1448 – 1449 هـ", alt:"ACADEMIC CALENDAR", soon:"الفعاليات القادمة", exams:"جدول الاختبارات", nextExam:"الاختبار القادم", noExam:"لا توجد اختبارات قادمة مجدولة حتى الآن.", todayW:"اليوم", inDays:n=>"بعد "+n+" "+(n===1?"يوم":(n===2?"يومين":(n<=10?"أيام":"يومًا"))), xDate:"التاريخ", xDay:"اليوم", xSub:"المادة", xSched:"الجدول", xHours:"تُعقد الاختبارات خلال ساعات الدوام الدراسي المعتادة.", xReg:d=>"سيكون يوم "+d+" يومًا دراسيًا عاديًا.", xNone:"لم يُنشر جدول اختبارات لهذا الصف بعد.", xDone:"انتهى", xNext:"القادم", xHint:"اضغط على أيقونة التقويم لحفظ اختبار واحد في تقويم Google.", month:"الشهر", year:"السنة", list:"القائمة",
+  title:"التقويم الأكاديمي", grades:"الصفوف 3 – 9", ah:"1448 – 1449 هـ", alt:"ACADEMIC CALENDAR", soon:"الفعاليات القادمة", dlH:"حمّل التقويم واطبعه", dlP:"مقاس A3، صفحتان. اطبع على الوجهين (قلب على الحافة الطويلة) بالحجم الفعلي.", dlYours:"صف طفلك", g12F:"تقويم الصفين 1–2", g39F:"تقويم الصفوف 3–9", dlB:"فتح ملف PDF", exams:"جدول الاختبارات", nextExam:"الاختبار القادم", noExam:"لا توجد اختبارات قادمة مجدولة حتى الآن.", todayW:"اليوم", inDays:n=>"بعد "+n+" "+(n===1?"يوم":(n===2?"يومين":(n<=10?"أيام":"يومًا"))), xDate:"التاريخ", xDay:"اليوم", xSub:"المادة", xSched:"الجدول", xHours:"تُعقد الاختبارات خلال ساعات الدوام الدراسي المعتادة.", xReg:d=>"سيكون يوم "+d+" يومًا دراسيًا عاديًا.", xNone:"لم يُنشر جدول اختبارات لهذا الصف بعد.", xDone:"انتهى", xNext:"القادم", xHint:"اضغط على أيقونة التقويم لحفظ اختبار واحد في تقويم Google.", month:"الشهر", year:"السنة", list:"القائمة",
   search:"ابحث عن فعالية، مثل: اجتماع، اختبار، عيد", sumH:"الإجازات والاختبارات", holH:"الإجازات والعطل", examH:"الاختبارات",
   eoy:"نهاية العام الدراسي", eoyD:"الخميس 1 يوليو 2027", res:"إعلان نتائج الفصل الثاني", resD:"الخميس 15 يوليو 2027", g12L:"الصفان 1 – 2", g39L:"الصفوف 3 – 9", g12S:"اختبارات الوحدات", g39S:"اختبارات منتصف ونهاية الفصل", pickG:"اختر صف طفلك", who:"من نحن", visH:"رؤيتنا", misH:"رسالتنا",
   vis:"أن نكون الشريك الموثوق في التحوّل الشامل للمتعلمين الصغار إلى قادة عالميين يتحلّون بقيم إنسانية راسخة.",
@@ -684,7 +696,13 @@ function gcal(e) {
   return "https://calendar.google.com/calendar/render?" + p.toString().replace("%2F","/");
 }
 const gbtn = (e, short) => `<a class="gadd" href="${gcal(e)}" target="_blank" rel="noopener" aria-label="${esc(T().gadd+": "+ttl(e))}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 7h14v10H5zm6 2v2.5H8.5v2H11V18h2v-2.5h2.5v-2H13V11z"/></svg>${short?"":`<span>${T().gaddS}</span>`}</a>`;
-function renderAllCard() {
+function renderDl() {
+  const F = { g12:"KAIS-Calendar-2026-27-Grades-1-2.pdf", g39:"KAIS-Calendar-2026-27-Grades-3-9.pdf" };
+  const order = GR==="g12" ? ["g12","g39"] : ["g39","g12"];
+  $("#dl").innerHTML = `<div class="dl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v14H6zm7 1.5V9h5.5zM8 13h8v1.6H8zm0 3.2h8v1.6H8z"/></svg><div><h3 title="${esc(T().dlP)}">${T().dlH}</h3></div></div>
+    <div class="dl-b">${order.map(g => `<a class="dl-a ${g} ${g===GR?"mine":""}" href="${F[g]}" target="_blank" rel="noopener"><span><b>${T()[g+"F"]}</b>${g===GR?`<small>${T().dlYours}</small>`:""}</span><em>PDF ↗</em></a>`).join("")}</div>`;
+}
+function renderAllCard() { renderDl();
   const el = $("#gall");
   let url = GCAL_ALL[lang] || GCAL_ALL.en;
   if (!url) {
