@@ -1,0 +1,46 @@
+KAIS ACADEMIC CALENDAR 2026-27 WEBSITE - HOW TO EDIT
+=====================================================
+
+FILES (keep all together in one folder)
+  index.html        The website (Grades 1-2 and Grades 3-9, English and Arabic)
+  kais-g39-en.ics   All dates, Grades 3-9, English  (used by "Add all dates")
+  kais-g39-ar.ics   All dates, Grades 3-9, Arabic
+  kais-g12-en.ics   All dates, Grades 1-2, English
+  kais-g12-ar.ics   All dates, Grades 1-2, Arabic
+  KAIS-Calendar-2026-27-Grades-3-9.pdf   Printable A3 calendar, Grades 3-9
+  KAIS-Calendar-2026-27-Grades-1-2.pdf   Printable A3 calendar, Grades 1-2
+
+Open index.html in Notepad / TextEdit (plain text) / VS Code. Keep a backup first.
+Press Ctrl+F (Cmd+F on Mac) to find things.
+
+1) EVENTS - search for  "g39": [   (Grades 3-9)  or  "g12": [   (Grades 1-2)
+   One line per event:
+   {"s": "2027-04-17", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
+     s = start date YYYY-MM-DD      e = end date in quotes, or null for one day
+     t = English name               a = Arabic name
+     c = hol / exam / ptm / evt / acad (colour)    f = true to colour every day
+   Every line ends with a comma except the last line of each list.
+   If an event is for both grades, change it in BOTH lists.
+
+2) EXAM SCHEDULES - search for  "sched"
+   Each grade has a title, grade name, and rows like:
+   {"d": "2026-11-15", "s": "Mathematics", "a": "الرياضيات"},
+   To add a new exam timetable (e.g. Term 1 Exam), copy a whole block
+   from {"title": ... to the closing ]} and change the values.
+
+3) TEXT AND COLOURS
+   English words are in the  en: {  section, Arabic in the  ar: {  section.
+   Colours near the top:  --brand:#2f63a6;  etc.
+
+4) CHECK: save, then double-click index.html to open it in the browser.
+   Blank page = a missing comma or quote. Undo (Ctrl+Z) and try again.
+
+5) PUT ONLINE: upload all 7 files to the same folder on the school website,
+   or drag the folder onto app.netlify.com/drop for a free link.
+   Links that open a grade directly:  index.html#g12   index.html#g39
+   Arabic:  #ar-g12   #ar-g39      Exam schedule:  #g39-exams   #g12-exams
+
+TO REPLACE A PDF: upload the new PDF with exactly the same file name.
+
+NOTE: the .ics files are NOT updated when you edit index.html.
+Send the edited index.html to Claude to regenerate them.
