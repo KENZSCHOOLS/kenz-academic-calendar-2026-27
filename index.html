@@ -40,15 +40,21 @@ img { max-width:100%; }
 [hidden] { display:none !important; }
 .gsw { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 18px; margin-block:4px 16px; }
 .gsw-l { font:800 15px var(--display); color:var(--navy); }
-.gsw-b { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1 1 420px; max-width:640px; }
+.gsw-b { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; flex:1 1 420px; max-width:860px; }
 .gsw button { text-align:start; border:2px solid var(--line); background:var(--surface); border-radius:16px; padding:12px 16px; display:grid; gap:2px; }
 .gsw button b { font:800 19px var(--display); color:var(--ink); }
 .gsw button small { font-size:13px; color:var(--mute); font-weight:600; }
-.gsw button.g12 { --gc:#ff8a3d; } .gsw button.g39 { --gc:var(--brand); }
+.gsw button.g12 { --gc:#ff8a3d; } .gsw button.kg { --gc:#8a57a1; } .gsw button.g39 { --gc:var(--brand); }
 .gsw button:hover { border-color:var(--gc); }
 .gsw button[aria-pressed="true"] { background:var(--gc); border-color:var(--gc); }
 .gsw button[aria-pressed="true"] b, .gsw button[aria-pressed="true"] small { color:#fff; }
 :root[data-grade="g12"] .pill { background:#ff8a3d; color:#fff; }
+:root[data-grade="kg"] .pill { background:#8a57a1; color:#fff; }
+:root[data-grade="kg"] .eoy { display:none; }
+.dl-a.kg.mine { border-color:#8a57a1; background:#8a57a1; } .dl-a.kg.mine b, .dl-a.kg.mine small, .dl-a.kg.mine em { color:#fff; }
+:root[data-grade="kg"] .ic { display:inline-flex; width:1.25em; height:1.25em; border-radius:50%; background:#fff; align-items:center; justify-content:center; vertical-align:-.18em; margin-inline-end:.3em; }
+:root[data-grade="kg"] .ic svg { width:66%; height:66%; fill:var(--mc); }
+:root[data-grade="kg"] .mini .h .ic { width:24px; height:24px; vertical-align:-6px; }
 .eoy.res { margin-top:10px; background:var(--acad); }
 .dl { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; justify-content:space-between; padding:8px 14px; margin-bottom:14px; border-inline-start:4px solid var(--hol); }
 .dl-t { display:flex; gap:8px; align-items:center; min-width:0; flex:0 1 auto; }
@@ -347,6 +353,7 @@ button { font:inherit; color:inherit; cursor:pointer; }
   <section class="gsw" aria-label="Choose grade">
     <div class="gsw-l" data-i="pickG">Choose your child's grade</div>
     <div class="gsw-b">
+      <button data-grade="kg" class="kg"><b data-i="kgL">KG</b><small data-i="kgS">Kindergarten</small></button>
       <button data-grade="g12" class="g12"><b data-i="g12L">Grades 1 – 2</b><small data-i="g12S">Unit tests</small></button>
       <button data-grade="g39" class="g39"><b data-i="g39L">Grades 3 – 9</b><small data-i="g39S">Mid-term &amp; term exams</small></button>
     </div>
@@ -404,7 +411,7 @@ button { font:inherit; color:inherit; cursor:pointer; }
     <div class="card sum c-exam"><h3 style="color:var(--exam)" data-i="examH">Examinations</h3><table id="t-exam"></table></div>
   </div>
   <div class="eoy"><b data-i="eoy">END OF ACADEMIC YEAR</b><span data-i="eoyD">Thursday, 1 July 2027</span></div>
-  <div class="eoy res"><b data-i="res">RESULT DECLARATION – TERM 2</b><span data-i="resD">Thursday, 15 July 2027</span></div>
+  <div class="eoy res"><b data-i="res">RESULT DECLARATION – TERM 2</b><span data-i="resD">Thursday, 8 July 2027</span></div>
 
   <h2 class="sec-h" data-i="who">Who We Are</h2>
   <div class="vm">
@@ -437,7 +444,7 @@ const ALL = {
       {"s": "2026-10-22", "e": null, "t": "Cabinet Result Announcement", "a": "إعلان نتائج انتخابات مجلس الطلاب", "c": "evt", "f": false},
       {"s": "2026-10-25", "e": null, "t": "Long Weekend", "a": "عطلة نهاية أسبوع مطوّلة", "c": "hol", "f": true},
       {"s": "2026-10-26", "e": "2026-10-29", "t": "First Aid Campaign", "a": "حملة الإسعافات الأولية", "c": "evt", "f": false},
-      {"s": "2026-11-08", "e": null, "t": "Cabinet Investiture Ceremony", "a": "حفل تنصيب مجلس الطلاب", "c": "evt", "f": false},
+      {"s": "2026-11-11", "e": null, "t": "Cabinet Investiture Ceremony", "a": "حفل تنصيب مجلس الطلاب", "c": "evt", "f": false},
       {"s": "2026-11-10", "e": "2026-11-19", "t": "Mid-Term 1 Exam – Grades 8 & 9", "a": "اختبارات منتصف الفصل الأول – الصفان 8 و9", "c": "exam", "f": true},
       {"s": "2026-11-15", "e": "2026-11-19", "t": "Mid-Term 1 Exam – Grades 3–7", "a": "اختبارات منتصف الفصل الأول – الصفوف 3–7", "c": "exam", "f": true},
       {"s": "2026-11-10", "e": "2026-11-19", "t": "Term 1 Test 1 – Islamic & IJT", "a": "الاختبار الأول للفصل الأول – التربية الإسلامية وIJT", "c": "exam", "f": true},
@@ -445,19 +452,19 @@ const ALL = {
       {"s": "2026-11-20", "e": "2026-11-28", "t": "Autumn Break", "a": "إجازة الخريف", "c": "hol", "f": true},
       {"s": "2026-11-29", "e": null, "t": "Classes Resume", "a": "استئناف الدراسة", "c": "acad", "f": false},
       {"s": "2026-11-29", "e": "2026-12-03", "t": "Project Week", "a": "أسبوع المشاريع", "c": "evt", "f": false},
-      {"s": "2026-11-29", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2026-11-29", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2026-12-03", "e": null, "t": "Int'l Day of Persons with Disabilities – Special Assembly", "a": "اليوم الدولي للأشخاص ذوي الإعاقة – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2026-12-05", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
       {"s": "2026-12-05", "e": null, "t": "KENZ Foundation Day", "a": "يوم تأسيس كنز", "c": "evt", "f": false},
-      {"s": "2026-12-06", "e": null, "t": "KENZ Founding Day Celebration", "a": "الاحتفال بيوم تأسيس كنز", "c": "evt", "f": false},
+      {"s": "2026-12-06", "e": null, "t": "KENZ Foundation Day Celebration – Special Assembly", "a": "الاحتفال بيوم تأسيس كنز – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2026-12-06", "e": "2026-12-10", "t": "Term 1 Quiz – Islamic & IJT", "a": "الاختبار القصير للفصل الأول – التربية الإسلامية وIJT", "c": "exam", "f": true},
       {"s": "2026-12-06", "e": "2026-12-10", "t": "Arabic Week", "a": "أسبوع اللغة العربية", "c": "evt", "f": false},
       {"s": "2026-12-13", "e": null, "t": "Friendship & Anti-Bullying – Special Assembly", "a": "الصداقة ومكافحة التنمر – إذاعة مدرسية خاصة", "c": "evt", "f": false},
-      {"s": "2026-12-13", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2026-12-13", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2026-12-13", "e": "2026-12-17", "t": "Sports Week", "a": "الأسبوع الرياضي", "c": "evt", "f": false},
       {"s": "2026-12-17", "e": null, "t": "SPARKS – Sports Day", "a": "SPARKS – اليوم الرياضي", "c": "evt", "f": false},
       {"s": "2026-12-18", "e": null, "t": "Arabic Day", "a": "اليوم العالمي للغة العربية", "c": "evt", "f": false},
-      {"s": "2026-12-20", "e": "2026-12-24", "t": "Revision", "a": "المراجعة", "c": "exam", "f": true},
+      {"s": "2026-12-20", "e": "2026-12-24", "t": "Term 1 – Revision & English Oral Exam", "a": "الفصل الأول – المراجعة والاختبار الشفهي للغة الإنجليزية", "c": "exam", "f": true},
       {"s": "2026-12-27", "e": "2027-01-05", "t": "Term 1 Exam – Grades 8 & 9", "a": "اختبارات نهاية الفصل الأول – الصفان 8 و9", "c": "exam", "f": true},
       {"s": "2026-12-30", "e": "2027-01-05", "t": "Term 1 Exam – Grades 3–7", "a": "اختبارات نهاية الفصل الأول – الصفوف 3–7", "c": "exam", "f": true},
       {"s": "2026-12-20", "e": "2026-12-24", "t": "Term 1 Test 2 – Islamic & IJT", "a": "الاختبار الثاني للفصل الأول – التربية الإسلامية وIJT", "c": "exam", "f": true},
@@ -467,12 +474,12 @@ const ALL = {
       {"s": "2027-01-17", "e": null, "t": "Term 2 Begins; Classes Resume", "a": "بداية الفصل الدراسي الثاني؛ استئناف الدراسة", "c": "acad", "f": false},
       {"s": "2027-01-17", "e": null, "t": "Children's Day – Crazy Hair Day – Special Assembly", "a": "يوم الطفل – يوم تسريحات الشعر المرحة – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2027-01-23", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
-      {"s": "2027-01-24", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-01-24", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-02-02", "e": null, "t": "100 Days of School", "a": "احتفال مرور 100 يوم دراسي", "c": "evt", "f": false},
       {"s": "2027-02-03", "e": null, "t": "Field Trip – Gr 3–9 (GS) & Gr 5–9 (BS)", "a": "رحلة ميدانية – الصفوف 3–9 (بنات) والصفوف 5–9 (بنين)", "c": "evt", "f": false},
       {"s": "2027-02-04", "e": null, "t": "World Cancer Day – Special Assembly", "a": "اليوم العالمي للسرطان – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2027-02-07", "e": "2027-02-10", "t": "Quran Competition", "a": "مسابقة القرآن الكريم", "c": "evt", "f": false},
-      {"s": "2027-02-07", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-02-07", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-02-14", "e": "2027-02-25", "t": "Quiz 2", "a": "الاختبار القصير الثاني", "c": "exam", "f": true},
       {"s": "2027-02-19", "e": "2027-02-22", "t": "Foundation Day Holidays", "a": "إجازة يوم التأسيس", "c": "hol", "f": true},
       {"s": "2027-02-22", "e": null, "t": "Saudi Founding Day", "a": "يوم التأسيس السعودي", "c": "hol", "f": false},
@@ -480,11 +487,11 @@ const ALL = {
       {"s": "2027-02-25", "e": null, "t": "Saudi Founding Day Celebration", "a": "الاحتفال بيوم التأسيس السعودي", "c": "evt", "f": false},
       {"s": "2027-02-26", "e": "2027-03-13", "t": "Eid ul-Fitr Holidays", "a": "إجازة عيد الفطر", "c": "hol", "f": true},
       {"s": "2027-03-01", "e": null, "t": "Civil Defense Awareness", "a": "التوعية بالدفاع المدني", "c": "evt", "f": false},
-      {"s": "2027-03-03", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
+      {"s": "2027-03-15", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
       {"s": "2027-03-11", "e": null, "t": "Saudi Flag Day", "a": "يوم العلم السعودي", "c": "evt", "f": false},
       {"s": "2027-03-14", "e": null, "t": "Classes Resume", "a": "استئناف الدراسة", "c": "acad", "f": false},
       {"s": "2027-03-14", "e": "2027-03-17", "t": "Science & Discovery Week", "a": "أسبوع العلوم والاكتشاف", "c": "evt", "f": false},
-      {"s": "2027-03-15", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-03-15", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-03-18", "e": null, "t": "Curiosity", "a": "يوم الفضول العلمي", "c": "evt", "f": false},
       {"s": "2027-03-21", "e": null, "t": "Mother's Day – Special Assembly", "a": "يوم الأم – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2027-03-22", "e": null, "t": "World Water Day – Special Assembly", "a": "اليوم العالمي للمياه – إذاعة مدرسية خاصة", "c": "evt", "f": false},
@@ -497,23 +504,23 @@ const ALL = {
       {"s": "2027-04-17", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
       {"s": "2027-04-18", "e": null, "t": "World Heritage Day – Traditional Attire", "a": "يوم التراث العالمي – الزي التقليدي", "c": "evt", "f": false},
       {"s": "2027-04-25", "e": "2027-04-29", "t": "Term 2 Quiz – Islamic & IJT", "a": "الاختبار القصير للفصل الثاني – التربية الإسلامية وIJT", "c": "exam", "f": true},
-      {"s": "2027-04-25", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-04-25", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-04-30", "e": "2027-05-22", "t": "Eid al-Adha Holidays", "a": "إجازة عيد الأضحى", "c": "hol", "f": true},
       {"s": "2027-05-23", "e": null, "t": "Classes Resume", "a": "استئناف الدراسة", "c": "acad", "f": false},
-      {"s": "2027-05-27", "e": null, "t": "DREAMZ – Graduation & Year-End Party", "a": "DREAMZ – حفل التخرج وختام العام", "c": "evt", "f": false},
-      {"s": "2027-06-07", "e": "2027-06-15", "t": "Revision", "a": "المراجعة", "c": "exam", "f": true},
+      {"s": "2027-06-07", "e": "2027-06-15", "t": "Term 2 – Revision & English Oral Exam", "a": "الفصل الثاني – المراجعة والاختبار الشفهي للغة الإنجليزية", "c": "exam", "f": true},
       {"s": "2027-06-16", "e": null, "t": "Instructional Holiday", "a": "إجازة دراسية", "c": "hol", "f": true},
       {"s": "2027-06-17", "e": "2027-06-27", "t": "Term 2 Exam – Grades 8 & 9", "a": "اختبارات نهاية الفصل الثاني – الصفان 8 و9", "c": "exam", "f": true},
       {"s": "2027-06-20", "e": "2027-06-24", "t": "Term 2 Exam – Grades 4–7", "a": "اختبارات نهاية الفصل الثاني – الصفوف 4–7", "c": "exam", "f": true},
       {"s": "2027-06-20", "e": "2027-06-24", "t": "Term 2 Exam – Grade 3", "a": "اختبارات نهاية الفصل الثاني – الصف الثالث", "c": "exam", "f": true},
       {"s": "2027-06-07", "e": "2027-06-15", "t": "Term 2 Test 2 – Islamic & IJT", "a": "الاختبار الثاني للفصل الثاني – التربية الإسلامية وIJT", "c": "exam", "f": true},
       {"s": "2026-10-15", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
-      {"s": "2026-11-05", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
+      {"s": "2026-11-03", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
       {"s": "2026-11-07", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
       {"s": "2027-02-18", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
       {"s": "2027-04-28", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
       {"s": "2027-07-01", "e": null, "t": "End of Academic Year", "a": "نهاية العام الدراسي", "c": "acad", "f": false},
-      {"s": "2027-07-15", "e": null, "t": "Result Declaration – Term 2", "a": "إعلان نتائج الفصل الثاني", "c": "acad", "f": false}
+      {"s": "2027-06-27", "e": "2027-07-01", "t": "Retest", "a": "إعادة الاختبار", "c": "exam", "f": true},
+      {"s": "2027-07-08", "e": null, "t": "Result Declaration – Term 2", "a": "إعلان نتائج الفصل الثاني", "c": "acad", "f": false}
     ],
     "g12": [   // ----- GRADES 1-2 -----
       {"s": "2026-09-02", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
@@ -532,7 +539,7 @@ const ALL = {
       {"s": "2026-10-22", "e": null, "t": "Cabinet Result Announcement", "a": "إعلان نتائج انتخابات مجلس الطلاب", "c": "evt", "f": false},
       {"s": "2026-10-25", "e": null, "t": "Long Weekend", "a": "عطلة نهاية أسبوع مطوّلة", "c": "hol", "f": true},
       {"s": "2026-10-26", "e": "2026-10-29", "t": "First Aid Campaign", "a": "حملة الإسعافات الأولية", "c": "evt", "f": false},
-      {"s": "2026-11-08", "e": null, "t": "Cabinet Investiture Ceremony", "a": "حفل تنصيب مجلس الطلاب", "c": "evt", "f": false},
+      {"s": "2026-11-11", "e": null, "t": "Cabinet Investiture Ceremony", "a": "حفل تنصيب مجلس الطلاب", "c": "evt", "f": false},
       {"s": "2026-11-15", "e": "2026-11-19", "t": "Unit Test 1 – Term 1", "a": "اختبار الوحدة الأول – الفصل الأول", "c": "exam", "f": true},
       {"s": "2026-11-08", "e": null, "t": "Field Trip", "a": "رحلة ميدانية", "c": "evt", "f": false},
       {"s": "2026-11-15", "e": "2026-11-19", "t": "Term 1 Test 1 – Islamic", "a": "الاختبار الأول للفصل الأول – التربية الإسلامية", "c": "exam", "f": true},
@@ -540,19 +547,19 @@ const ALL = {
       {"s": "2026-11-20", "e": "2026-11-28", "t": "Autumn Break", "a": "إجازة الخريف", "c": "hol", "f": true},
       {"s": "2026-11-29", "e": null, "t": "Classes Resume", "a": "استئناف الدراسة", "c": "acad", "f": false},
       {"s": "2026-11-29", "e": "2026-12-03", "t": "Project Week", "a": "أسبوع المشاريع", "c": "evt", "f": false},
-      {"s": "2026-11-29", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2026-11-29", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2026-12-03", "e": null, "t": "Int'l Day of Persons with Disabilities – Special Assembly", "a": "اليوم الدولي للأشخاص ذوي الإعاقة – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2026-12-05", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
       {"s": "2026-12-05", "e": null, "t": "KENZ Foundation Day", "a": "يوم تأسيس كنز", "c": "evt", "f": false},
-      {"s": "2026-12-06", "e": null, "t": "KENZ Founding Day Celebration", "a": "الاحتفال بيوم تأسيس كنز", "c": "evt", "f": false},
+      {"s": "2026-12-06", "e": null, "t": "KENZ Foundation Day Celebration – Special Assembly", "a": "الاحتفال بيوم تأسيس كنز – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2026-12-06", "e": "2026-12-10", "t": "Term 1 Quiz – Islamic", "a": "الاختبار القصير للفصل الأول – التربية الإسلامية", "c": "exam", "f": true},
       {"s": "2026-12-06", "e": "2026-12-10", "t": "Arabic Week", "a": "أسبوع اللغة العربية", "c": "evt", "f": false},
       {"s": "2026-12-13", "e": null, "t": "Friendship & Anti-Bullying – Special Assembly", "a": "الصداقة ومكافحة التنمر – إذاعة مدرسية خاصة", "c": "evt", "f": false},
-      {"s": "2026-12-13", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2026-12-13", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2026-12-13", "e": "2026-12-17", "t": "Sports Week", "a": "الأسبوع الرياضي", "c": "evt", "f": false},
       {"s": "2026-12-17", "e": null, "t": "SPARKS – Sports Day", "a": "SPARKS – اليوم الرياضي", "c": "evt", "f": false},
       {"s": "2026-12-18", "e": null, "t": "Arabic Day", "a": "اليوم العالمي للغة العربية", "c": "evt", "f": false},
-      {"s": "2026-12-20", "e": "2026-12-24", "t": "Revision", "a": "المراجعة", "c": "exam", "f": true},
+      {"s": "2026-12-20", "e": "2026-12-24", "t": "Term 1 – Revision & English Oral Exam", "a": "الفصل الأول – المراجعة والاختبار الشفهي للغة الإنجليزية", "c": "exam", "f": true},
       {"s": "2026-12-31", "e": "2027-01-05", "t": "Unit Test 2 – Term 1", "a": "اختبار الوحدة الثاني – الفصل الأول", "c": "exam", "f": true},
       {"s": "2026-12-20", "e": "2026-12-24", "t": "Term 1 Test 2 – Islamic", "a": "الاختبار الثاني للفصل الأول – التربية الإسلامية", "c": "exam", "f": true},
       {"s": "2027-01-04", "e": null, "t": "World Braille Day", "a": "اليوم العالمي للغة برايل", "c": "evt", "f": false},
@@ -561,12 +568,12 @@ const ALL = {
       {"s": "2027-01-17", "e": null, "t": "Term 2 Begins; Classes Resume", "a": "بداية الفصل الدراسي الثاني؛ استئناف الدراسة", "c": "acad", "f": false},
       {"s": "2027-01-17", "e": null, "t": "Children's Day – Crazy Hair Day – Special Assembly", "a": "يوم الطفل – يوم تسريحات الشعر المرحة – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2027-01-23", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
-      {"s": "2027-01-24", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-01-24", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-02-02", "e": null, "t": "100 Days of School", "a": "احتفال مرور 100 يوم دراسي", "c": "evt", "f": false},
       {"s": "2027-02-03", "e": null, "t": "Field Trip – Gr 2–9 (GS) & Gr 5–9 (BS)", "a": "رحلة ميدانية – الصفوف 2–9 (بنات) والصفوف 5–9 (بنين)", "c": "evt", "f": false},
       {"s": "2027-02-04", "e": null, "t": "World Cancer Day – Special Assembly", "a": "اليوم العالمي للسرطان – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2027-02-07", "e": "2027-02-10", "t": "Quran Competition", "a": "مسابقة القرآن الكريم", "c": "evt", "f": false},
-      {"s": "2027-02-07", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-02-07", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-02-14", "e": "2027-02-25", "t": "Quiz 2", "a": "الاختبار القصير الثاني", "c": "exam", "f": true},
       {"s": "2027-02-19", "e": "2027-02-22", "t": "Foundation Day Holidays", "a": "إجازة يوم التأسيس", "c": "hol", "f": true},
       {"s": "2027-02-22", "e": null, "t": "Saudi Founding Day", "a": "يوم التأسيس السعودي", "c": "hol", "f": false},
@@ -574,11 +581,11 @@ const ALL = {
       {"s": "2027-02-25", "e": null, "t": "Saudi Founding Day Celebration", "a": "الاحتفال بيوم التأسيس السعودي", "c": "evt", "f": false},
       {"s": "2027-02-26", "e": "2027-03-13", "t": "Eid ul-Fitr Holidays", "a": "إجازة عيد الفطر", "c": "hol", "f": true},
       {"s": "2027-03-01", "e": null, "t": "Civil Defense Awareness", "a": "التوعية بالدفاع المدني", "c": "evt", "f": false},
-      {"s": "2027-03-03", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
+      {"s": "2027-03-17", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
       {"s": "2027-03-11", "e": null, "t": "Saudi Flag Day", "a": "يوم العلم السعودي", "c": "evt", "f": false},
       {"s": "2027-03-14", "e": null, "t": "Classes Resume", "a": "استئناف الدراسة", "c": "acad", "f": false},
       {"s": "2027-03-14", "e": "2027-03-17", "t": "Science & Discovery Week", "a": "أسبوع العلوم والاكتشاف", "c": "evt", "f": false},
-      {"s": "2027-03-15", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-03-15", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-03-18", "e": null, "t": "Curiosity", "a": "يوم الفضول العلمي", "c": "evt", "f": false},
       {"s": "2027-03-21", "e": null, "t": "Mother's Day – Special Assembly", "a": "يوم الأم – إذاعة مدرسية خاصة", "c": "evt", "f": false},
       {"s": "2027-03-22", "e": null, "t": "World Water Day – Special Assembly", "a": "اليوم العالمي للمياه – إذاعة مدرسية خاصة", "c": "evt", "f": false},
@@ -589,20 +596,63 @@ const ALL = {
       {"s": "2027-04-17", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
       {"s": "2027-04-18", "e": null, "t": "World Heritage Day – Traditional Attire", "a": "يوم التراث العالمي – الزي التقليدي", "c": "evt", "f": false},
       {"s": "2027-04-25", "e": "2027-04-29", "t": "Term 2 Quiz – Islamic", "a": "الاختبار القصير للفصل الثاني – التربية الإسلامية", "c": "exam", "f": true},
-      {"s": "2027-04-25", "e": null, "t": "D.E.A.R Day", "a": "يوم القراءة (D.E.A.R)", "c": "evt", "f": false},
+      {"s": "2027-04-25", "e": null, "t": "D.E.A.R Day (Drop Everything And Read)", "a": "يوم القراءة D.E.A.R (اترك كل شيء واقرأ)", "c": "evt", "f": false},
       {"s": "2027-04-30", "e": "2027-05-22", "t": "Eid al-Adha Holidays", "a": "إجازة عيد الأضحى", "c": "hol", "f": true},
       {"s": "2027-05-23", "e": null, "t": "Classes Resume", "a": "استئناف الدراسة", "c": "acad", "f": false},
-      {"s": "2027-05-27", "e": null, "t": "DREAMZ – Graduation & Year-End Party", "a": "DREAMZ – حفل التخرج وختام العام", "c": "evt", "f": false},
-      {"s": "2027-06-06", "e": "2027-06-10", "t": "Revision", "a": "المراجعة", "c": "exam", "f": true},
+      {"s": "2027-06-07", "e": "2027-06-15", "t": "Term 2 – Revision & English Oral Exam", "a": "الفصل الثاني – المراجعة والاختبار الشفهي للغة الإنجليزية", "c": "exam", "f": true},
       {"s": "2027-06-13", "e": "2027-06-17", "t": "Unit Test 2 – Term 2", "a": "اختبار الوحدة الثاني – الفصل الثاني", "c": "exam", "f": true},
       {"s": "2027-06-07", "e": "2027-06-15", "t": "Term 2 Test 2 – Islamic", "a": "الاختبار الثاني للفصل الثاني – التربية الإسلامية", "c": "exam", "f": true},
       {"s": "2026-10-15", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
-      {"s": "2026-11-04", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
+      {"s": "2026-11-08", "e": null, "t": "PEP (Online)", "a": "برنامج PEP (عن بُعد)", "c": "acad", "f": false},
       {"s": "2026-11-07", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
       {"s": "2027-02-18", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
       {"s": "2027-04-28", "e": null, "t": "Fire Drill", "a": "تمرين الإخلاء الوهمي (الحريق)", "c": "evt", "f": false},
       {"s": "2027-07-01", "e": null, "t": "End of Academic Year", "a": "نهاية العام الدراسي", "c": "acad", "f": false},
-      {"s": "2027-07-15", "e": null, "t": "Result Declaration – Term 2", "a": "إعلان نتائج الفصل الثاني", "c": "acad", "f": false}
+      {"s": "2027-06-27", "e": "2027-07-01", "t": "Retest", "a": "إعادة الاختبار", "c": "exam", "f": true},
+      {"s": "2027-07-08", "e": null, "t": "Result Declaration – Term 2", "a": "إعلان نتائج الفصل الثاني", "c": "acad", "f": false}
+    ],
+    "kg": [   // ----- KINDERGARTEN -----
+      {"s": "2026-09-08", "e": null, "t": "KG Opening Day", "a": "يوم افتتاح الروضة", "c": "acad", "f": false},
+      {"s": "2026-09-09", "e": "2026-09-17", "t": "Bridge Course", "a": "البرنامج التأسيسي (Bridge Course)", "c": "acad", "f": false},
+      {"s": "2026-09-19", "e": null, "t": "PTM 1", "a": "اجتماع أولياء الأمور 1", "c": "ptm", "f": false},
+      {"s": "2026-09-20", "e": null, "t": "Regular Academics Begin", "a": "بدء الدراسة المنتظمة", "c": "acad", "f": false},
+      {"s": "2026-09-22", "e": null, "t": "Saudi National Day Celebration", "a": "الاحتفال باليوم الوطني السعودي", "c": "evt", "f": false},
+      {"s": "2026-09-23", "e": "2026-09-26", "t": "Saudi National Day Holidays", "a": "إجازة اليوم الوطني السعودي", "c": "hol", "f": true},
+      {"s": "2026-09-30", "e": null, "t": "KG Movie Day", "a": "يوم السينما للروضة", "c": "evt", "f": false},
+      {"s": "2026-10-05", "e": null, "t": "World Teachers' Day", "a": "اليوم العالمي للمعلم", "c": "evt", "f": false},
+      {"s": "2026-10-16", "e": null, "t": "World Food Day", "a": "اليوم العالمي للغذاء", "c": "evt", "f": false},
+      {"s": "2026-10-21", "e": null, "t": "Healthy Smiling Day", "a": "يوم الابتسامة الصحية", "c": "evt", "f": false},
+      {"s": "2026-11-03", "e": null, "t": "Fire Drill 1 – Fire Evacuation Awareness", "a": "تمرين الإخلاء الأول – التوعية بالإخلاء من الحريق", "c": "evt", "f": false},
+      {"s": "2026-11-04", "e": "2026-11-05", "t": "Quiz 1 – Term 1 (Oral)", "a": "الاختبار القصير الأول – الفصل الأول (شفهي)", "c": "exam", "f": true},
+      {"s": "2026-11-12", "e": null, "t": "Community Helpers Day", "a": "يوم مساعدي المجتمع", "c": "evt", "f": false},
+      {"s": "2026-11-13", "e": null, "t": "World Kindness Day", "a": "اليوم العالمي للطف", "c": "evt", "f": false},
+      {"s": "2026-11-16", "e": "2026-11-19", "t": "Unit Test 1 – Term 1 (All Subjects)", "a": "اختبار الوحدة الأول – الفصل الأول (جميع المواد)", "c": "exam", "f": true},
+      {"s": "2026-11-20", "e": null, "t": "Universal Children's Day", "a": "اليوم العالمي للطفل", "c": "evt", "f": false},
+      {"s": "2026-11-21", "e": "2026-11-28", "t": "Autumn Break", "a": "إجازة الخريف", "c": "hol", "f": true},
+      {"s": "2026-12-03", "e": null, "t": "PTM 2", "a": "اجتماع أولياء الأمور 2", "c": "ptm", "f": false},
+      {"s": "2026-12-03", "e": null, "t": "Int'l Day of Persons with Disabilities", "a": "اليوم الدولي للأشخاص ذوي الإعاقة", "c": "evt", "f": false},
+      {"s": "2026-12-10", "e": null, "t": "SPARKS – KG Sports Programme", "a": "SPARKS – البرنامج الرياضي للروضة", "c": "evt", "f": false},
+      {"s": "2026-12-13", "e": "2026-12-16", "t": "Quiz 2 – Term 1", "a": "الاختبار القصير الثاني – الفصل الأول", "c": "exam", "f": true},
+      {"s": "2026-12-21", "e": null, "t": "Ocean Day – KG Outdoor Trip", "a": "يوم المحيط – رحلة خارجية للروضة", "c": "evt", "f": false},
+      {"s": "2026-12-31", "e": "2027-01-05", "t": "Unit Test 2 – Term 1", "a": "اختبار الوحدة الثاني – الفصل الأول", "c": "exam", "f": true},
+      {"s": "2027-01-08", "e": "2027-01-16", "t": "Mid-Year Break", "a": "إجازة منتصف العام", "c": "hol", "f": true},
+      {"s": "2027-01-23", "e": null, "t": "PTM 3", "a": "اجتماع أولياء الأمور 3", "c": "ptm", "f": false},
+      {"s": "2027-01-24", "e": null, "t": "International Day of Education", "a": "اليوم الدولي للتعليم", "c": "evt", "f": false},
+      {"s": "2027-01-25", "e": "2027-01-28", "t": "Mini Teacher Week", "a": "أسبوع المعلم الصغير", "c": "evt", "f": false},
+      {"s": "2027-01-31", "e": null, "t": "Fire Drill 2 – Fire Evacuation Awareness", "a": "تمرين الإخلاء الثاني – التوعية بالإخلاء من الحريق", "c": "evt", "f": false},
+      {"s": "2027-02-14", "e": "2027-02-17", "t": "Quiz 1 – Term 2", "a": "الاختبار القصير الأول – الفصل الثاني", "c": "exam", "f": true},
+      {"s": "2027-02-18", "e": null, "t": "Saudi Founding Day Celebration", "a": "الاحتفال بيوم التأسيس السعودي", "c": "evt", "f": false},
+      {"s": "2027-02-19", "e": "2027-02-22", "t": "Founding Day Holidays", "a": "إجازة يوم التأسيس", "c": "hol", "f": true},
+      {"s": "2027-02-26", "e": "2027-03-13", "t": "Eid ul-Fitr Holidays", "a": "إجازة عيد الفطر", "c": "hol", "f": true},
+      {"s": "2027-03-14", "e": null, "t": "International Day of Mathematics", "a": "اليوم الدولي للرياضيات", "c": "evt", "f": false},
+      {"s": "2027-03-18", "e": null, "t": "Curiosity Day", "a": "يوم الفضول", "c": "evt", "f": false},
+      {"s": "2027-03-29", "e": "2027-04-01", "t": "Unit Test 1 – Term 2", "a": "اختبار الوحدة الأول – الفصل الثاني", "c": "exam", "f": true},
+      {"s": "2027-03-31", "e": null, "t": "KG Mini Market Day", "a": "يوم السوق الصغير للروضة", "c": "evt", "f": false},
+      {"s": "2027-04-17", "e": null, "t": "PTM 4", "a": "اجتماع أولياء الأمور 4", "c": "ptm", "f": false},
+      {"s": "2027-04-21", "e": null, "t": "KG Farm Day", "a": "يوم المزرعة للروضة", "c": "evt", "f": false},
+      {"s": "2027-04-25", "e": "2027-04-28", "t": "Quiz 2 – Term 2", "a": "الاختبار القصير الثاني – الفصل الثاني", "c": "exam", "f": true},
+      {"s": "2027-04-30", "e": "2027-05-22", "t": "Eid al-Adha Holidays", "a": "إجازة عيد الأضحى", "c": "hol", "f": true},
+      {"s": "2027-06-14", "e": "2027-06-17", "t": "Unit Test 2 – Term 2 / End-of-Year Assessment", "a": "اختبار الوحدة الثاني – الفصل الثاني / تقييم نهاية العام", "c": "exam", "f": true}
     ]
   },
   // ===== EXAM SCHEDULES: d = date, s = subject (English), a = subject (Arabic); regular = a non-exam day inside the exam week =====
@@ -639,7 +689,8 @@ const ALL = {
           {"d": "2026-11-18", "s": "English", "a": "اللغة الإنجليزية"},
           {"d": "2026-11-19", "s": "Science", "a": "العلوم"}
         ]}
-    ]
+    ],
+    "kg": []
   },
   // ===== MONTHS: name, theme, skill, Hijri label, colour =====
   "months": [
@@ -654,6 +705,18 @@ const ALL = {
     {"y": 2027, "m": 5, "name": "May", "nameAr": "مايو", "theme": "Sky High", "skill": "Aspiration", "themeAr": "نحو القمة", "skillAr": "الطموح", "hijri": "Dhu al-Qa'dah – Dhu al-Hijjah 1448 AH", "icon": "<ellipse cx=\"12\" cy=\"9\" rx=\"6.2\" ry=\"7.2\"/><path d=\"M11 16.3h2l-1 1.6z\"/><path d=\"M12 17.8c-1.5 1.5 1.5 2.5 0 4.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\"/>", "hijriAr": "ذو القعدة – ذو الحجة 1448 هـ", "color": "#b81d5a"},
     {"y": 2027, "m": 6, "name": "June", "nameAr": "يونيو", "theme": "Goal Getters", "skill": "Perseverance", "themeAr": "صُنّاع الإنجاز", "skillAr": "المثابرة", "hijri": "Dhu al-Hijjah 1448 – Muharram 1449 AH", "icon": "<path d=\"M6 3h12v4.5a6 6 0 0 1-12 0z\"/><path d=\"M6 5H3a3 3 0 0 0 3 4M18 5h3a3 3 0 0 1-3 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/><rect x=\"10.6\" y=\"13\" width=\"2.8\" height=\"4\"/><rect x=\"7.5\" y=\"17.6\" width=\"9\" height=\"3\" rx=\"1\"/>", "hijriAr": "ذو الحجة 1448 – محرم 1449 هـ", "color": "#74378f"}
   ],
+  "monthsKG": [
+    {"y": 2026, "m": 9, "name": "September", "nameAr": "سبتمبر", "theme": "Honesty", "skill": "Value of the month", "themeAr": "الصدق", "skillAr": "قيمة الشهر", "hijri": "Rabi' I – Rabi' II 1448 AH", "icon": "<path d=\"M12 7c-2-1.6-6-1.2-6.8 2.6-.8 4 1.6 10.4 4.6 10.4 1 0 1.4-.6 2.2-.6s1.2.6 2.2.6c3 0 5.4-6.4 4.6-10.4C18 5.8 14 5.4 12 7z\"/><path d=\"M12 7c0-2 1-3.6 3-4.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M12.6 5.4c1.4-1.8 3.6-1.8 4.4-1.2-.8 1.6-2.8 2.2-4.4 1.2z\"/>", "hijriAr": "ربيع الأول – ربيع الآخر 1448 هـ", "color": "#2b66ad"},
+    {"y": 2026, "m": 10, "name": "October", "nameAr": "أكتوبر", "theme": "Courage", "skill": "Value of the month", "themeAr": "الشجاعة", "skillAr": "قيمة الشهر", "hijri": "Rabi' II – Jumada I 1448 AH", "icon": "<circle cx=\"12\" cy=\"12\" r=\"4.6\"/><g stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8\"/></g>", "hijriAr": "ربيع الآخر – جمادى الأولى 1448 هـ", "color": "#12897b"},
+    {"y": 2026, "m": 11, "name": "November", "nameAr": "نوفمبر", "theme": "Kindness", "skill": "Value of the month", "themeAr": "اللطف", "skillAr": "قيمة الشهر", "hijri": "Jumada I – Jumada II 1448 AH", "icon": "<path d=\"M12 21s-8.5-5.3-8.5-11.2C3.5 6.6 5.8 4.5 8.4 4.5c1.6 0 2.9.8 3.6 2 .7-1.2 2-2 3.6-2 2.6 0 4.9 2.1 4.9 5.3C20.5 15.7 12 21 12 21z\"/>", "hijriAr": "جمادى الأولى – جمادى الآخرة 1448 هـ", "color": "#3f9a36"},
+    {"y": 2026, "m": 12, "name": "December", "nameAr": "ديسمبر", "theme": "Responsibility", "skill": "Value of the month", "themeAr": "المسؤولية", "skillAr": "قيمة الشهر", "hijri": "Jumada II – Rajab 1448 AH", "icon": "<path d=\"M12 3L2.5 11h2.7v9.5h5.3v-6h3v6h5.3V11h2.7z\"/>", "hijriAr": "جمادى الآخرة – رجب 1448 هـ", "color": "#7a9e17"},
+    {"y": 2027, "m": 1, "name": "January", "nameAr": "يناير", "theme": "Respect", "skill": "Value of the month", "themeAr": "الاحترام", "skillAr": "قيمة الشهر", "hijri": "Rajab – Sha'ban 1448 AH", "icon": "<circle cx=\"12\" cy=\"6.2\" r=\"3\"/><circle cx=\"17.4\" cy=\"10\" r=\"3\"/><circle cx=\"15.4\" cy=\"16\" r=\"3\"/><circle cx=\"8.6\" cy=\"16\" r=\"3\"/><circle cx=\"6.6\" cy=\"10\" r=\"3\"/><circle cx=\"12\" cy=\"11.6\" r=\"2.4\" fill=\"#fff\"/>", "hijriAr": "رجب – شعبان 1448 هـ", "color": "#c99a00"},
+    {"y": 2027, "m": 2, "name": "February", "nameAr": "فبراير", "theme": "Charity", "skill": "Value of the month", "themeAr": "العطاء", "skillAr": "قيمة الشهر", "hijri": "Sha'ban – Ramadan 1448 AH", "icon": "<rect x=\"3.5\" y=\"9\" width=\"17\" height=\"11.5\" rx=\"1.4\"/><rect x=\"2.5\" y=\"6.5\" width=\"19\" height=\"4\" rx=\"1.2\"/><path d=\"M12 6.5v14\" stroke=\"#fff\" stroke-width=\"2\"/><path d=\"M12 6.5C10 3 6.5 3.6 7.6 6.5M12 6.5c2-3.5 5.5-2.9 4.4 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/>", "hijriAr": "شعبان – رمضان 1448 هـ", "color": "#e0860f"},
+    {"y": 2027, "m": 3, "name": "March", "nameAr": "مارس", "theme": "Curiosity", "skill": "Value of the month", "themeAr": "الفضول", "skillAr": "قيمة الشهر", "hijri": "Ramadan – Shawwal 1448 AH", "icon": "<circle cx=\"10\" cy=\"10\" r=\"6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\"/><path d=\"M14.4 14.4l6 6\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/>", "hijriAr": "رمضان – شوال 1448 هـ", "color": "#dd5f1f"},
+    {"y": 2027, "m": 4, "name": "April", "nameAr": "أبريل", "theme": "Creativity", "skill": "Value of the month", "themeAr": "الإبداع", "skillAr": "قيمة الشهر", "hijri": "Shawwal – Dhu al-Qa'dah 1448 AH", "icon": "<path d=\"M12 3a9 9 0 1 0 0 18c1.6 0 2.2-1 2.2-2 0-1.4-1.2-1.8-1.2-3 0-1.2 1-2 2.4-2H18a3 3 0 0 0 3-3c0-4.4-4-8-9-8z\"/><circle cx=\"7.4\" cy=\"11\" r=\"1.5\" fill=\"#fff\"/><circle cx=\"9.6\" cy=\"7\" r=\"1.5\" fill=\"#fff\"/><circle cx=\"14.4\" cy=\"7\" r=\"1.5\" fill=\"#fff\"/><circle cx=\"17\" cy=\"10.6\" r=\"1.3\" fill=\"#fff\"/>", "hijriAr": "شوال – ذو القعدة 1448 هـ", "color": "#c8262d"},
+    {"y": 2027, "m": 5, "name": "May", "nameAr": "مايو", "theme": "Dreams", "skill": "Value of the month", "themeAr": "الأحلام", "skillAr": "قيمة الشهر", "hijri": "Dhu al-Qa'dah – Dhu al-Hijjah 1448 AH", "icon": "<path d=\"M14.5 3.2a8.6 8.6 0 1 0 6.3 12.9A7 7 0 0 1 14.5 3.2z\"/><path d=\"M18.5 3.5l.7 1.6 1.7.2-1.3 1.1.4 1.7-1.5-.9-1.5.9.4-1.7-1.3-1.1 1.7-.2z\"/>", "hijriAr": "ذو القعدة – ذو الحجة 1448 هـ", "color": "#b81d5a"},
+    {"y": 2027, "m": 6, "name": "June", "nameAr": "يونيو", "theme": "Perseverance", "skill": "Value of the month", "themeAr": "المثابرة", "skillAr": "قيمة الشهر", "hijri": "Dhu al-Hijjah 1448 – Muharram 1449 AH", "icon": "<path d=\"M12 2.5c3.2 2 5 5.6 5 9.4v4.2l-2.2 2H9.2L7 16.1v-4.2c0-3.8 1.8-7.4 5-9.4z\"/><circle cx=\"12\" cy=\"10\" r=\"2\" fill=\"#fff\"/><path d=\"M7 13.5l-3 3.2v2.8l3-1.4zM17 13.5l3 3.2v2.8l-3-1.4zM10.2 19.5h3.6L12 22.5z\"/>", "hijriAr": "ذو الحجة 1448 – محرم 1449 هـ", "color": "#74378f"}
+  ],
   "monAr": ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
 };
 let GR = "g39";
@@ -662,7 +725,7 @@ const I18N = {
  en: {
   title:"ACADEMIC CALENDAR", grades:"GRADES 3 – 9", ah:"1448 – 1449 AH", alt:"التقويم الأكاديمي", soon:"Coming up", month:"Month", year:"Year", list:"List", dlH:"Download & print the calendar", dlP:"A3 size, two pages. Print double-sided (flip on long edge) at actual size.", dlYours:"Your grade", g12F:"Grades 1–2 calendar", g39F:"Grades 3–9 calendar", dlB:"Open PDF", exams:"Exam Schedule", nextExam:"Next exam", noExam:"No upcoming exams have been scheduled yet.", todayW:"Today", inDays:n=>"In "+n+(n===1?" day":" days"), xDate:"Date", xDay:"Day", xSub:"Subject", xSched:"Schedule", xHours:"Exams will be conducted during regular class hours.", xReg:d=>d+" will be a regular class day.", xNone:"No exam timetable has been published for this grade yet.", xDone:"Done", xNext:"Next", xHint:"Tap the calendar icon to save a single exam to Google Calendar.",
   search:"Search events, e.g. PTM, exam, Eid", sumH:"Holidays & Examinations", holH:"Holidays & Breaks", examH:"Examinations",
-  eoy:"END OF ACADEMIC YEAR", eoyD:"Thursday, 1 July 2027", res:"RESULT DECLARATION – TERM 2", resD:"Thursday, 15 July 2027", g12L:"Grades 1 – 2", g39L:"Grades 3 – 9", g12S:"Unit tests", g39S:"Mid-term & term exams", pickG:"Choose your child's grade", who:"Who We Are", visH:"Our Vision", misH:"Our Mission",
+  eoy:"END OF ACADEMIC YEAR", eoyD:"Thursday, 1 July 2027", res:"RESULT DECLARATION – TERM 2", resD:"Thursday, 8 July 2027", kgL:"KG", kgS:"Kindergarten", kgF:"KG calendar", g12L:"Grades 1 – 2", g39L:"Grades 3 – 9", g12S:"Unit tests", g39S:"Mid-term & term exams", pickG:"Choose your child's grade", who:"Who We Are", visH:"Our Vision", misH:"Our Mission",
   vis:"To be the trusted partner in the holistic transformation of young learners into global leaders with strong human values.",
   mis:"We empower young minds to thrive in a diverse and inclusive community, where every student grows into a confident, compassionate, and socially responsible leader with a commitment to excellence.",
   f1:"KENZ Advanced International School, Rabigh · MOE Lic. No. 520-21576", f2:"School week: Sunday – Thursday. Dates may change; families are informed by official circular.",
@@ -681,7 +744,7 @@ const I18N = {
  ar: {
   title:"التقويم الأكاديمي", grades:"الصفوف 3 – 9", ah:"1448 – 1449 هـ", alt:"ACADEMIC CALENDAR", soon:"الفعاليات القادمة", dlH:"حمّل التقويم واطبعه", dlP:"مقاس A3، صفحتان. اطبع على الوجهين (قلب على الحافة الطويلة) بالحجم الفعلي.", dlYours:"صف طفلك", g12F:"تقويم الصفين 1–2", g39F:"تقويم الصفوف 3–9", dlB:"فتح ملف PDF", exams:"جدول الاختبارات", nextExam:"الاختبار القادم", noExam:"لا توجد اختبارات قادمة مجدولة حتى الآن.", todayW:"اليوم", inDays:n=>"بعد "+n+" "+(n===1?"يوم":(n===2?"يومين":(n<=10?"أيام":"يومًا"))), xDate:"التاريخ", xDay:"اليوم", xSub:"المادة", xSched:"الجدول", xHours:"تُعقد الاختبارات خلال ساعات الدوام الدراسي المعتادة.", xReg:d=>"سيكون يوم "+d+" يومًا دراسيًا عاديًا.", xNone:"لم يُنشر جدول اختبارات لهذا الصف بعد.", xDone:"انتهى", xNext:"القادم", xHint:"اضغط على أيقونة التقويم لحفظ اختبار واحد في تقويم Google.", month:"الشهر", year:"السنة", list:"القائمة",
   search:"ابحث عن فعالية، مثل: اجتماع، اختبار، عيد", sumH:"الإجازات والاختبارات", holH:"الإجازات والعطل", examH:"الاختبارات",
-  eoy:"نهاية العام الدراسي", eoyD:"الخميس 1 يوليو 2027", res:"إعلان نتائج الفصل الثاني", resD:"الخميس 15 يوليو 2027", g12L:"الصفان 1 – 2", g39L:"الصفوف 3 – 9", g12S:"اختبارات الوحدات", g39S:"اختبارات منتصف ونهاية الفصل", pickG:"اختر صف طفلك", who:"من نحن", visH:"رؤيتنا", misH:"رسالتنا",
+  eoy:"نهاية العام الدراسي", eoyD:"الخميس 1 يوليو 2027", res:"إعلان نتائج الفصل الثاني", resD:"الخميس 8 يوليو 2027", kgL:"الروضة", kgS:"رياض الأطفال", kgF:"تقويم الروضة", g12L:"الصفان 1 – 2", g39L:"الصفوف 3 – 9", g12S:"اختبارات الوحدات", g39S:"اختبارات منتصف ونهاية الفصل", pickG:"اختر صف طفلك", who:"من نحن", visH:"رؤيتنا", misH:"رسالتنا",
   vis:"أن نكون الشريك الموثوق في التحوّل الشامل للمتعلمين الصغار إلى قادة عالميين يتحلّون بقيم إنسانية راسخة.",
   mis:"نُمكّن العقول الناشئة من النمو والازدهار في مجتمع متنوع وشامل، حيث ينشأ كل طالب قائدًا واثقًا ورحيمًا ومسؤولًا اجتماعيًا، ملتزمًا بالتميّز.",
   f1:"KENZ Advanced International School · رابغ · ترخيص وزارة التعليم رقم 520-21576", f2:"أيام الدراسة من الأحد إلى الخميس. التواريخ قابلة للتغيير، ويُبلَّغ أولياء الأمور بأي تعديل عبر تعميم رسمي.",
@@ -725,8 +788,8 @@ document.addEventListener("click", async ev => {
   setTimeout(() => { em.textContent = old; }, 2500);
 });
 function renderDl() {
-  const F = { g12:"KAIS-Calendar-2026-27-Grades-1-2.pdf", g39:"KAIS-Calendar-2026-27-Grades-3-9.pdf" };
-  const order = GR==="g12" ? ["g12","g39"] : ["g39","g12"];
+  const F = { kg:"KAIS-Calendar-2026-27-KG.pdf", g12:"KAIS-Calendar-2026-27-Grades-1-2.pdf", g39:"KAIS-Calendar-2026-27-Grades-3-9.pdf" };
+  const order = [GR, ...["kg","g12","g39"].filter(x => x!==GR)];
   $("#dl").innerHTML = `<div class="dl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v14H6zm7 1.5V9h5.5zM8 13h8v1.6H8zm0 3.2h8v1.6H8z"/></svg><div><h3 title="${esc(T().dlP)}">${T().dlH}</h3></div></div>
     <div class="dl-b">${order.map(g => `<a class="dl-a ${g} ${g===GR?"mine":""}" href="${F[g]}" download="${F[g]}" target="_blank" rel="noopener"><span><b>${T()[g+"F"]}</b>${g===GR?`<small>${T().dlYours}</small>`:""}</span><em>PDF ↗</em></a>`).join("")}</div>`;
 }
@@ -753,6 +816,8 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 let lang = "en";
 const GTXT = {
   g39: { en:{ grades:"GRADES 3 – 9" }, ar:{ grades:"الصفوف 3 – 9" } },
+  kg: { en:{ grades:"KINDERGARTEN", exams:"Assessments", nextExam:"Next assessment", noExam:"No upcoming assessments.", xNone:"KG assessments are listed in the calendar and the Assessments table below.", sumH:"Holidays & Assessments", examH:"Assessments", cats:{...I18N.en.cats, exam:"Quizzes & Unit Tests"}, short:{...I18N.en.short, exam:"Assessment"} },
+        ar:{ grades:"رياض الأطفال", exams:"التقييمات", nextExam:"التقييم القادم", noExam:"لا توجد تقييمات قادمة.", xNone:"تقييمات الروضة مدرجة في التقويم وجدول التقييمات أدناه.", sumH:"الإجازات والتقييمات", examH:"التقييمات", cats:{...I18N.ar.cats, exam:"الاختبارات القصيرة واختبارات الوحدات"}, short:{...I18N.ar.short, exam:"تقييم"} } },
   g12: { en:{ exams:"Test Schedule", nextExam:"Next test", noExam:"No upcoming tests have been scheduled yet.", xHours:"Tests will be conducted during regular class hours.", grades:"GRADES 1 – 2", sumH:"Holidays & Unit Tests", examH:"Unit Tests", cats:{...I18N.en.cats, exam:"Unit Tests & Revision"}, short:{...I18N.en.short, exam:"Unit test"} },
          ar:{ exams:"جدول الاختبارات", xHours:"تُعقد الاختبارات خلال ساعات الدوام الدراسي المعتادة.", grades:"الصفان 1 – 2", sumH:"الإجازات واختبارات الوحدات", examH:"اختبارات الوحدات", cats:{...I18N.ar.cats, exam:"اختبارات الوحدات والمراجعة"}, short:{...I18N.ar.short, exam:"اختبار وحدة"} } }
 };
@@ -768,7 +833,7 @@ const range = e => e.e ? (e.S.getMonth()===e.E.getMonth() ? e.S.getDate()+"–"+
 
 let EV = [], byDay = {};
 function loadGrade(g) {
-  GR = ALL.grades[g] ? g : "g39"; DATA.events = ALL.grades[GR];
+  GR = ALL.grades[g] ? g : "g39"; DATA.events = ALL.grades[GR]; DATA.months = (GR==="kg" && ALL.monthsKG) ? ALL.monthsKG : ALL.months;
   EV = DATA.events.map((e,i) => ({...e, i, S:parse(e.s), E:parse(e.e||e.s)}));
   byDay = {}; EV.forEach(e => { for (let d=e.S; d<=e.E; d=addDays(d,1)) (byDay[key(d)] ||= []).push(e); });
 }
@@ -836,7 +901,7 @@ function renderMonth() {
     h += `<button class="${cls.join(" ")}" data-k="${k}" aria-label="${esc(aria)}"><span class="n" data-today="${T().today}">${n}</span>${show}${more}${dots}</button>`;
   }
   $("#grid").innerHTML = h;
-  const ms = new Date(m.y, m.m-1, 1), me = (m.y===2027 && m.m===6) ? parse("2027-07-15") : new Date(m.y, m.m, 0);
+  const ms = new Date(m.y, m.m-1, 1), me = (m.y===2027 && m.m===6) ? parse("2027-07-08") : new Date(m.y, m.m, 0);
   const items = EV.filter(e => st.on[e.c] && e.S<=me && e.E>=ms).sort((a,b)=> (a.S<ms?ms:a.S)-(b.S<ms?ms:b.S) || PRI[b.c]-PRI[a.c]);
   $("#mlt").textContent = T().glance(mName(m));
   $("#mlist").innerHTML = items.length ? items.map(e => `<li><button class="c-${e.c}" data-k="${key(e.S<ms?ms:e.S)}"><span class="d">${range(e)}</span><span class="dot"></span><span>${esc(ttl(e))}</span></button></li>`).join("") : `<li class="empty">${T().noEv}</li>`;
@@ -886,7 +951,7 @@ function renderYear() {
 function renderList() {
   const q = $("#q").value.trim().toLowerCase();
   $("#agenda").innerHTML = DATA.months.map(m => {
-    const ms = new Date(m.y, m.m-1, 1), me = (m.y===2027 && m.m===6) ? parse("2027-07-15") : new Date(m.y, m.m, 0);
+    const ms = new Date(m.y, m.m-1, 1), me = (m.y===2027 && m.m===6) ? parse("2027-07-08") : new Date(m.y, m.m, 0);
     const items = EV.filter(e => st.on[e.c] && e.S>=ms && e.S<=me && (!q || e.t.toLowerCase().includes(q) || e.a.includes(q) || I18N.en.cats[e.c].toLowerCase().includes(q) || I18N.ar.cats[e.c].includes(q)));
     if (!items.length) return "";
     return `<div class="card ag" style="--mc:${m.color}"><h3>${lang==="ar"?m.nameAr:m.name.toUpperCase()} ${m.y}<small>${esc(lang==="ar"?m.themeAr:m.theme)} · ${esc(lang==="ar"?m.skillAr:m.skill)}</small></h3><ul>${items.map(e => `<li class="c-${e.c}"><span class="d">${e.e ? fmt(e.S)+" – "+fmt(e.E) : fmtS(e.S)}</span><span class="dot"></span><span>${esc(ttl(e))}</span><span class="k">${gbtn(e,true)}</span></li>`).join("")}</ul></div>`;
@@ -900,6 +965,8 @@ function renderStatus() {
   else { const dd = Math.round((endY-today)/864e5); n.innerHTML = `<div class="count"><div><b>${dd}</b><small>${T().days(dd)}</small></div></div><div><div class="lbl">${T().until}</div><h3>${T().endT}</h3><p>${fmtL(endY)}</p></div>`; }
   const nx = [];
   SCH().forEach(sc => { const r = sc.rows.find(r => parse(r.d) >= today); if (r) nx.push({sc, r, D:parse(r.d)}); });
+  if (!SCH().length) { const ne = EV.filter(e => e.c==="exam" && e.E >= today).sort((a,b)=>a.S-b.S)[0];
+    if (ne) nx.push({sc:{title:ne.t, titleAr:ne.a, grade:T().grades, gradeAr:T().grades}, r:{s:range(ne), a:range(ne)}, D: ne.S < today ? today : ne.S}); }
   const nxe = $("#nextx");
   if (!nx.length) nxe.innerHTML = `<div class="lbl">${T().nextExam}</div><p class="empty">${T().noExam}</p>`;
   else {
@@ -915,7 +982,7 @@ function renderStatus() {
 function renderSums() {
   const row = e => `<tr><td>${esc(ttl(e))}</td><td>${e.e ? fmt(e.S)+" – "+fmt(e.E)+" "+e.E.getFullYear() : fmtL(e.S)}</td></tr>`;
   $("#t-hol").innerHTML = EV.filter(e=>e.c==="hol"&&e.f).map(row).join("");
-  $("#t-exam").innerHTML = EV.filter(e=>e.c==="exam"&&e.e&&!/Islamic|Quiz/.test(e.t)).map(row).join("");
+  $("#t-exam").innerHTML = EV.filter(e=>e.c==="exam"&&e.e&&(GR==="kg"||!/Islamic|Quiz/.test(e.t))).map(row).join("");
   $("#vals").innerHTML = T().values.map((v,i)=>`<div class="card val" style="--vc:${VCOL[i]}"><b><i>${i+1}</i>${v[0]}</b><p>${v[1]}</p></div>`).join("");
 }
 function setView(v) {
@@ -949,7 +1016,7 @@ $("#q").addEventListener("input", renderList);
 function fromHash() {
   const parts = location.hash.slice(1).split("-").filter(Boolean);
   let hl = null, hg = null, hv = null;
-  parts.forEach(p => { if (p==="ar") hl = "ar"; else if (p==="en") hl = "en"; else if (p==="g12"||p==="g39") hg = p; else if (["month","year","list","exams"].includes(p)) hv = p; });
+  parts.forEach(p => { if (p==="ar") hl = "ar"; else if (p==="en") hl = "en"; else if (p==="g12"||p==="g39"||p==="kg") hg = p; else if (["month","year","list","exams"].includes(p)) hv = p; });
   if (!hl && (hv || hg)) hl = "en";
   const nl = hl || saved.lang || ((navigator.language||"").toLowerCase().startsWith("ar") ? "ar" : "en");
   const ng = hg || saved.gr || "g39";

@@ -7,13 +7,16 @@ FILES (keep all together in one folder)
   kais-g39-ar.ics   All dates, Grades 3-9, Arabic
   kais-g12-en.ics   All dates, Grades 1-2, English
   kais-g12-ar.ics   All dates, Grades 1-2, Arabic
+  kais-kg-en.ics    All dates, KG, English
+  kais-kg-ar.ics    All dates, KG, Arabic
   KAIS-Calendar-2026-27-Grades-3-9.pdf   Printable A3 calendar, Grades 3-9
   KAIS-Calendar-2026-27-Grades-1-2.pdf   Printable A3 calendar, Grades 1-2
+  KAIS-Calendar-2026-27-KG.pdf           Printable A3 calendar, KG
 
 Open index.html in Notepad / TextEdit (plain text) / VS Code. Keep a backup first.
 Press Ctrl+F (Cmd+F on Mac) to find things.
 
-1) EVENTS - search for  "g39": [   (Grades 3-9)  or  "g12": [   (Grades 1-2)
+1) EVENTS - search for  "g39": [   (Grades 3-9)  or  "g12": [   (Grades 1-2)  or  "kg": [   (KG)
    One line per event:
    {"s": "2027-04-17", "e": null, "t": "PTM", "a": "اجتماع أولياء الأمور", "c": "ptm", "f": false},
      s = start date YYYY-MM-DD      e = end date in quotes, or null for one day
@@ -35,9 +38,9 @@ Press Ctrl+F (Cmd+F on Mac) to find things.
 4) CHECK: save, then double-click index.html to open it in the browser.
    Blank page = a missing comma or quote. Undo (Ctrl+Z) and try again.
 
-5) PUT ONLINE: upload all 7 files to the same folder on the school website,
+5) PUT ONLINE: upload all 10 files to the same folder on the school website,
    or drag the folder onto app.netlify.com/drop for a free link.
-   Links that open a grade directly:  index.html#g12   index.html#g39
+   Links that open a grade directly:  index.html#kg   index.html#g12   index.html#g39
    Arabic:  #ar-g12   #ar-g39      Exam schedule:  #g39-exams   #g12-exams
 
 TO REPLACE A PDF: upload the new PDF with exactly the same file name.
